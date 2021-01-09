@@ -1,0 +1,58 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PodFactory
+    network: mainnet
+    source:
+      abi: PodFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - OptionCreated(indexed address,address,address)
+      abis:
+        - name: PodFactory
+          file: PodFactory/abis/PodFactory.json
+      eventHandlers:
+        - event: OptionCreated(indexed address,address,address)
+          handler: handleOptionCreated
+      file: PodFactory/PodFactory.wasm
+  - kind: ethereum/contract
+    name: PodToken
+    network: mainnet
+    source:
+      abi: PodToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Burn
+        - Exchange
+        - Mint
+        - SellUniswap
+        - Transfer
+        - Withdraw
+      abis:
+        - name: PodToken
+          file: PodToken/abis/PodToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Burn(indexed address,uint256)
+          handler: handleBurn
+        - event: Exchange(indexed address,uint256)
+          handler: handleExchange
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: SellUniswap(indexed address,uint256)
+          handler: handleSellUniswap
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: PodFactory/PodFactory.wasm

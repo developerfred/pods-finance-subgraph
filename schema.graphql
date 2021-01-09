@@ -1,0 +1,50 @@
+type Burn @entity {
+    id: ID!
+    seller: Bytes!
+    amount: BigInt!
+}
+
+type Exchange @entity {
+    id: ID!
+    buyer: Bytes!
+    amount: BigInt!
+}  
+
+type OptionCreated @entity {
+    id: ID!
+    exchangeAddress: Bytes!
+    option: Bytes!
+    deployer: Bytes!
+}
+
+type Approval @entity {
+    id: ID!
+    owner: Bytes!
+    spender: Bytes!
+    value: BigInt!
+}
+
+type Mint @entity {
+    id: ID!
+    seller: Bytes!
+    amount: BigInt!
+}
+
+type SellUniswap @entity {
+    id: ID!
+    seller: Bytes!
+    amount: BigInt!
+}
+
+type Transfer @entity {
+    id: ID!
+    to: Bytes!
+    value: BigInt!
+}
+
+type Withdraw @entity {
+    id: ID!
+    seller: Bytes!
+    amount: BigInt!
+
+}
